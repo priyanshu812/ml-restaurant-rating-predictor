@@ -39,5 +39,6 @@ if st.button("Predict"):
             input_dict[f"is_{r.lower().replace(' ','_')}"] = 1
         input_dict['encoded_area'] = area_rating[area]
         df = pd.DataFrame([input_dict])
+        df = df[feature_col]  
         prediction = model.predict(df)
         st.success(f"Predicted Rating: {prediction[0]:.2f} ⭐")
