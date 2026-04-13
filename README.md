@@ -2,7 +2,7 @@
 
 A machine learning web app that predicts restaurant ratings based on location, cuisine, type, and pricing — trained on real Zomato Bangalore data.
 
-**Live Demo →** [Coming Soon](#) *(Streamlit Cloud deployment in progress)*
+**Live Demo →** https://ml-restaurant-rating-predictor.streamlit.app *(Streamlit Cloud deployment in progress)*
 
 ---
 
