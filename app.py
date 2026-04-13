@@ -28,7 +28,6 @@ if st.button("Predict"):
     if not cusine and not res_type:
         st.warning("Please select atleast one cusine or restaurant type")
     else:   
-        st.write("Predicting...")
         input_dict = {col :0 for col in feature_col}
         input_dict['table_booking'] = 1 if table_booking == 'Yes' else 0 
         input_dict['online_order']=1 if online_order == 'Yes' else 0 
@@ -39,16 +38,6 @@ if st.button("Predict"):
             input_dict[f"is_{r.lower().replace(' ','_')}"] = 1
         input_dict['encoded_area'] = area_rating[area]
         df = pd.DataFrame([input_dict])
-        df = df[feature_col]
-
-        # DEBUG - remove after fixing
-        trained_features = model.feature_names_in_
-        st.write("Columns in df:", list(df.columns))
-        st.write("Trained features:", list(trained_features))
-        mismatch = set(trained_features) - set(df.columns)
-        st.write("Missing from df:", mismatch)
-        extra = set(df.columns) - set(trained_features)
-        st.write("Extra in df:", extra)
-
+        df = df[model.feature_names_in_]
         prediction = model.predict(df)
         st.success(f"Predicted Rating: {prediction[0]:.2f} ⭐")
